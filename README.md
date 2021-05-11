@@ -1,7 +1,4 @@
 # tenet.js
-
-Repo for classic C-type Javascript types with TypeScript.
-
 ---
 ## What is tenet.js
 

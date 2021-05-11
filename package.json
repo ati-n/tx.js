@@ -1,0 +1,20 @@
+{
+  "name": "tenetjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lexer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ati-n/tenet.js.git"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ati-n/tenetjs/issues"
+  },
+  "homepage": "https://github.com/ati-n/tenet.js#readme"
+}

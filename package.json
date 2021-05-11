@@ -1,20 +1,51 @@
 {
-  "name": "tenetjs",
+  "name": "@ati-n/tenet",
   "version": "1.0.0",
-  "description": "",
-  "main": "lexer.js",
+  "description": "Enables classic C-type types in Javascript",
+  "main": "src/main.js",
+  "bin": {
+    "tenet": "bin/tenetjs",
+    "@ati-n/tenet": "bin/tenetjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": ">=14.16.1",
+    "tsc": ">=4.2.4"
+  },
+  "keywords": [
+    "tenet.js",
+    "tenetjs",
+    "tjs",
+    "js type",
+    "javascript type",
+    "javascript",
+    "typescript"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ati-n/tenet.js.git"
+    "url": "git+https://github.com/ati-n/tenet.js.git#main"
   },
-  "type": "module",
-  "author": "",
-  "license": "ISC",
+  "author": "Attila Nedermann (https://github.com/ati-n/)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ati-n/tenetjs/issues"
   },
-  "homepage": "https://github.com/ati-n/tenet.js#readme"
+
+  "homepage": "https://github.com/ati-n/tenet.js#readme",
+  "dependencies": {
+    "arg": "^5.0.0",
+    "esm": "^3.2.25"
+  },
+  "devDependencies": {
+    "execa": "^5.0.0"
+  },
+  "files": [
+    "bin/",
+    "src/"
+  ]
 }

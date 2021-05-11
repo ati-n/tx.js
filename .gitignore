@@ -122,14 +122,12 @@ dist
 *.tsx
 # NPM
 npm-debug.log
-node_modules
+.node_modules/
 # Others
 
 # Idea
 .idea/
-*.iml
-*.xml
-out/
+.out/
 
 # Package Files
 *.jar

@@ -8,14 +8,33 @@ It enables typenames for variables such as _int, double, string_ and _bool_.
 
 
 ## Installation
+```
+-- Locally in your project
 
-Make sure you have _Node.js_ and _TypeScript_ installed.
+$ npm install -D typescript
+$ npm install -D tenet.js
+
+-- Or globally with TypeScript
+
+$ npm install -g typescript
+$ npm install -g tenet.js
+```
 
 ## How to run
 
-To compile **test.tjs** run `node lexer.js test.tjs`
+To compile **test.tjs** run
+```
+$ tenet test.tjs
+```
 
 This command will create a `test.ts` and a `test.js` file. You can do whatever you want with them! 🥳
 + **tenet.js**  always keeps the same file name.
 + Error handling is done by the TypeScript compiler.
+---
+## More to come
 
++ Automatic conversion to let/const
++ type check by Typescript
++ protected namespaces
++ syntax highlighter
++ and more..

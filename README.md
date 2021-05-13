@@ -17,7 +17,7 @@ $ npm install -D transplant-js
 
 # Or globally with TypeScript
 $ npm install -g typescript
-$ npm install -g tx.js
+$ npm install -g transplant-js
 ```
 
 ## How to run

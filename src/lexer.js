@@ -60,7 +60,6 @@ export const lexer = function (input) {
         } else throw "Unrecognized token.";
     }
 
-    //addToken("(end)");
 
     const concatTokens = function (tokens) {
         return tokens.map(v => {

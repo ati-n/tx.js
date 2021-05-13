@@ -119,7 +119,9 @@ dist
 #Javascript files
 *.jsx
 *.ts
+*d.ts
 *.tsx
+*.tx
 # NPM
 npm-debug.log
 .node_modules/
@@ -142,3 +144,5 @@ npm-debug.log
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+# Text
+*.txt

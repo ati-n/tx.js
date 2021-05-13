@@ -1,11 +1,11 @@
 {
-  "name": "@ati-n/tenet",
+  "name": "tx.js",
   "version": "1.0.0",
-  "description": "Enables classic C-type types in Javascript",
-  "main": "src/main.js",
+  "description": "Write strictly-typed Javascript code",
+  "main": "src/index.js",
   "bin": {
-    "tenet": "bin/tenetjs",
-    "@ati-n/tenet": "bin/tenetjs"
+    "txc": "bin/txjs",
+    "@ati-n/txc": "bin/txjs"
   },
   "publishConfig": {
     "access": "public"
@@ -18,9 +18,10 @@
     "tsc": ">=4.2.4"
   },
   "keywords": [
-    "tenet.js",
-    "tenetjs",
-    "tjs",
+    "tx.js",
+    "txjs",
+    "tx",
+    "transplant.js",
     "js type",
     "javascript type",
     "javascript",
@@ -28,15 +29,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ati-n/tenet.js.git#main"
+    "url": "git+https://github.com/ati-n/tx.js.git#main"
   },
   "author": "Attila Nedermann (https://github.com/ati-n/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ati-n/tenetjs/issues"
+    "url": "https://github.com/ati-n/tx.js/issues"
   },
-
-  "homepage": "https://github.com/ati-n/tenet.js#readme",
+  "homepage": "https://github.com/ati-n/tx.js#readme",
   "dependencies": {
     "arg": "^5.0.0",
     "esm": "^3.2.25"

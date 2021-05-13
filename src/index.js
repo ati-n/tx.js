@@ -1,2 +1,3 @@
+"use strict";
 require = require('esm')(module);
-require('./cli').cli(process.argv).catch(alert);
+require('../src/cli').cli(process.argv)

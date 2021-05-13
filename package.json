@@ -1,5 +1,5 @@
 {
-  "name": "tx.js",
+  "name": "transplant-js",
   "version": "1.0.0",
   "description": "Write strictly-typed Javascript code",
   "main": "src/index.js",
@@ -21,7 +21,9 @@
     "tx.js",
     "txjs",
     "tx",
+    "transplant",
     "transplant.js",
+    "transplant-js",
     "js type",
     "javascript type",
     "javascript",

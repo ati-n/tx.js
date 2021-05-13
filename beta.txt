@@ -1,0 +1,14 @@
+function add ( x , y ) {
+ return x + y;
+}
+
+int num 1 = 2 
+const num 2 = 8 ;
+string text = "Sorry : ( ";
+bool isSmaller = num 1 < num 2 
+
+if ( isSmaller ) {
+ console.log ( add ( num 1 , num 2 ) ) ;
+} else {
+ console.log ( " 2 < 8 " + text ) ;
+}

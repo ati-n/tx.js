@@ -4,8 +4,6 @@ import { promisify } from 'util';
 import { lexer } from './lexer';
 
 const accessPromd = promisify(access);
-const readStreamP = promisify(createReadStream);
-const writetreamP = promisify(createWriteStream);
 const currentDir = `${process.cwd()}/`;
 
 /**

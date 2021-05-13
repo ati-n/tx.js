@@ -1,10 +1,10 @@
 # What is this ?
 
-**tenet.js** is a pseudo compiler for Javascript with TypeScript.
+**tx.js** is a pseudo compiler for Javascript with TypeScript.
 
 It enables typenames for variables such as _int, double, string_ and _bool_.
 
-**tenet.js**  files are created with the **`.tjs`** extension.
+**tenet.js**  files are created with the **`.tx`** extension.
 
 
 ## Installation
@@ -12,23 +12,23 @@ It enables typenames for variables such as _int, double, string_ and _bool_.
 -- Locally in your project
 
 $ npm install -D typescript
-$ npm install -D tenet.js
+$ npm install -D tx.js
 
 -- Or globally with TypeScript
 
 $ npm install -g typescript
-$ npm install -g tenet.js
+$ npm install -g tx.js
 ```
 
 ## How to run
 
-To compile **test.tjs** run
+To compile **test.tx** run
 ```
-$ tenet test.tjs
+$ txc test.tx
 ```
 
 This command will create a `test.ts` and a `test.js` file. You can do whatever you want with them! 🥳
-+ **tenet.js**  always keeps the same file name.
++ **tx.js**  always keeps the same file name.
 + Error handling is done by the TypeScript compiler.
 ---
 ## More to come

@@ -1,6 +1,7 @@
 import arg from 'arg';
-import { convertTxToJs } from './main';
-const { version } = require('../package.json');
+import { convertTxToJs } from './main.js';
+import { readFile } from 'fs/promises';
+const json = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
 
 /**
  * Transplant.js CLI
@@ -23,19 +24,22 @@ function parseArgumentsIntoOptions(rawArgs) {
     const args = arg(
         {
             '--help': Boolean,
-            '--pretty': Boolean,
             '--version': Boolean,
-            '-help': '--help',
+            '--pretty': Boolean,
+            '--strict': Boolean,
+            '--es3': Boolean,
             '-h': '--help',
-            '-p': '--pretty',
             '-V': '--version',
+            '-p': '--pretty',
         },
         { argv: slicedArgs, permissive: true},
     );
     return {
-        prettify: args['--pretty'] || false,
         sendHelp: args['--help'] || false,
         whichVersion: args['--version'] || false,
+        prettify: args['--pretty'] || false,
+        strict: args['--strict'] || false,
+        es3: args['-es3'] || false,
         template: args._[0],
         argvLength: slicedArgs.length,
     }
@@ -54,8 +58,12 @@ function checkOption({sendHelp, template, whichVersion, argvLength}) {
         console.error("[Tx.js::Error]\nNoArgumentError\t... Use `txc --help` if you're lost.");
 
     } else if (!template) {
-        sendHelp ? console.log('[Options]\n-h\t--help\t\tthis message\n-v\t--version\tcurrent version\n--p\t--pretty\tenables typescript pretty\n') : null;
-        whichVersion ? console.log(`Version ${version}`) : null;
+        sendHelp && console.log(`[Options]\n--help\t\t-h\tthis message
+--version\t-v\tcurrent version
+--pretty\t-p\tenable typescript pretty
+--strict\t\tenable strict mode ('use strict')
+--es3\t\t\tTSC compiles with ES3 (instead of ES6)`);
+        whichVersion && console.log(`Version ${json.version}`);
 
     } else {
         templateExtensionCheck(template);

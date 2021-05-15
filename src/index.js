@@ -1,3 +1,4 @@
-"use strict";
-require = require('esm')(module);
-require('../src/cli').cli(process.argv)
+#!/usr/bin/env node
+
+import { cli } from './cli.js';
+cli(process.argv);

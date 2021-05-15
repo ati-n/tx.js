@@ -3,14 +3,13 @@
   "version": "1.0.4",
   "description": "Write strictly-typed Javascript code",
   "main": "src/index.js",
+  "exports": "./src/index.js",
   "bin": {
-    "txc": "bin/txjs"
+    "txc": "./src/index.js"
   },
+  "type": "module",
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "start": "node src/index.js"
   },
   "engines": {
     "node": ">=14.16.1",
@@ -40,7 +39,6 @@
   "homepage": "https://github.com/ati-n/tx.js#readme",
   "dependencies": {
     "arg": "^5.0.0",
-    "esm": "^3.2.25",
     "execa": "^5.0.0"
   },
   "files": [

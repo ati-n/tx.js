@@ -60,7 +60,7 @@ function readFromFile(txPath, tsPath) {
  * @returns string
  */
 function optionConfigs(options, optionsList) {
-    options.es3 || optionsList.push('--target es6');
+    options.es3 || optionsList.push('--target es6') && optionsList.push('--lib es6');
     options.prettify && optionsList.push('--pretty');
     options.strict && optionsList.push('--strict');
 }

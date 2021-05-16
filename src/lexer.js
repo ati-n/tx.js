@@ -23,14 +23,13 @@ export const lexer = function (input) {
                 return /\n/.test(c) || /;/.test(c);
             },
             isIdentifier = function (c) {
-                return typeof c === "string" && !isOperator(c) && !isDigit(c)
+                return typeof c === "string" && !isOperator(c)
                     && !isWhiteSpace(c) && !isEndOfLine(c) && !isSomeBraces(c);
             },
             isType = function (t) {
                 const typeOf = {
                     "int": true, "double": true, "string": true, "bool": true, "sym": true,
-                    "obj": true, "def": true, "null": true, "unknown": true,
-                    "default": false,
+                    "obj": true, "default": false,
                 }
                 return typeOf[t] || typeOf["default"];
             },
@@ -46,9 +45,6 @@ export const lexer = function (input) {
                 "bool":   ": boolean",
                 "sym":  "symbol",
                 "obj":  ": object",
-                "def":  ": function",
-                "null": ": null",
-                "unknown":  ": unknown",
             };
             /**
              * swap type to let if no const keyword
@@ -76,7 +72,7 @@ export const lexer = function (input) {
          */
         while (i < input.length) {
             c = input[i];
-            last = tokens.length && last;
+            last = tokens.length && tokens[tokens.length-1];
 
             if (isWhiteSpace(c)) {
                 advance();

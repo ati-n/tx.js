@@ -29,7 +29,7 @@ export const lexer = function (input) {
             isType = function (t) {
                 const typeOf = {
                     "int": true, "double": true, "string": true, "bool": true, "sym": true,
-                    "obj": true, "def": true, "null": true, "unknown": true, "any": true,
+                    "obj": true, "def": true, "null": true, "unknown": true,
                     "default": false,
                 }
                 return typeOf[t] || typeOf["default"];
@@ -49,12 +49,11 @@ export const lexer = function (input) {
                 "def":  ": function",
                 "null": ": null",
                 "unknown":  ": unknown",
-                "any":  ": any",
             };
             /**
              * swap type to let if no const keyword
              */
-            if (/*tokens[tokens.length-1]*/last?.value !== "const") {
+            if (last?.value !== "const") {
                 addToken("identifier", "let");
             }
             addToken("type", typeOf[type] || typeOf["any"]);
@@ -78,18 +77,13 @@ export const lexer = function (input) {
         while (i < input.length) {
             c = input[i];
             last = tokens.length && last;
-            //console.log(last);
 
             if (isWhiteSpace(c)) {
                 advance();
             } else if (isOperator(c)) {
-                if (isOperator(last.value)) {
-                    let l = tokens.pop();
-                    addToken('operator', l.value+c);
-                } else {
-                    addToken("operator", c);
-                }
-                advance();
+                let operator = c;
+                while (isOperator(advance())) operator += c;
+                addToken("operator", operator);
             } else if (isSomeBraces(c)) {
                 addToken("braces", c);
                 advance();
@@ -126,8 +120,8 @@ export const lexer = function (input) {
                 return v.value;
             }).join(" ");
         }
-
-        return concatTokens(tokens);
+        console.log(tokens);
+        return concatTokens(tokens,' ');
     }
 
     Array.prototype.insert = function ( index, item ) {

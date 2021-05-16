@@ -120,7 +120,7 @@ export const lexer = function (input) {
                 return v.value;
             }).join(" ");
         }
-        console.log(tokens);
+
         return concatTokens(tokens,' ');
     }
 

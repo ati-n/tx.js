@@ -5,10 +5,10 @@
      * @returns concatenated tokens
      */
 export const lexer = function (input) {
-        let tokens = [], c, i = 0;
+        let tokens = [], c, i = 0, last;
 
         const isOperator = function (c) {
-                return /[+\-*\/%=,^]/.test(c);
+                return /[+\-*\/%=<>,!?^]/.test(c);
             },
             isSomeBraces = function (c) {
                 return /[\]\[(){}]/.test(c);
@@ -35,7 +35,7 @@ export const lexer = function (input) {
                 return typeOf[t] || typeOf["default"];
             },
             isPreviousType = () => {
-                return tokens[tokens.length-1]?.type === "type";
+                return last?.type === "type";
             }
 
         const typify = function (type) {
@@ -54,7 +54,7 @@ export const lexer = function (input) {
             /**
              * swap type to let if no const keyword
              */
-            if (tokens[tokens.length-1]?.value !== "const") {
+            if (/*tokens[tokens.length-1]*/last?.value !== "const") {
                 addToken("identifier", "let");
             }
             addToken("type", typeOf[type] || typeOf["any"]);
@@ -77,11 +77,18 @@ export const lexer = function (input) {
          */
         while (i < input.length) {
             c = input[i];
+            last = tokens.length && last;
+            //console.log(last);
 
             if (isWhiteSpace(c)) {
                 advance();
             } else if (isOperator(c)) {
-                addToken("operator", c);
+                if (isOperator(last.value)) {
+                    let l = tokens.pop();
+                    addToken('operator', l.value+c);
+                } else {
+                    addToken("operator", c);
+                }
                 advance();
             } else if (isSomeBraces(c)) {
                 addToken("braces", c);

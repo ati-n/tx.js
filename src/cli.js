@@ -39,7 +39,7 @@ function parseArgumentsIntoOptions(rawArgs) {
         whichVersion: args['--version'] || false,
         prettify: args['--pretty'] || false,
         strict: args['--strict'] || false,
-        es3: args['-es3'] || false,
+        es3: args['--es3'] || false,
         template: args._[0],
         argvLength: slicedArgs.length,
     }

@@ -1,8 +1,8 @@
 ![image alt <](https://github.com/ati-n/tx.js/blob/main/tx-logo.svg)
 # What is this ?
 
-**transplant.js** ( _or_ **`tx.js`** ) is a pseudo compiler for Javascript with TypeScript.  
-It enables typenames for variables such as _int, double, string_ and _bool_.
+**transplant.js** ( _or_ **`tx.js`** ) is a Javascript compiler relying heavily on TypeScript.  
+It uses “types on the left”-style declarations and the 'classic' C/C++/Java types like _int, double, str_ and _bool_.
 
 **tx.js**  files can be created with the **`.tx`** extension.
 
@@ -35,19 +35,19 @@ This command will create a `test.ts` and a `test.js` file. You can do whatever y
 ```ruby
 #// Write your code in tx.js
     const int x = 10;
-    double y = 2n ** 53n;
-    string s = 'tx.js is awesome!';
+    double y = 99.9999;
+    str s = 'tx.js is awesome!';
 ```
 ```typescript
 // The tx compiler converts it to TypeScript
     const x: number = 10;
-    let y: bigint = 2n ** 53n;
+    let y: number = 99.9999;
     let s: string = 'tx.js is awesome!';
 ```
 ```javascript
 // Then the TypeScript compiler does the dirty job to convert it to JavaScript
     const x = 10;
-    let y = 2n ** 53n;
+    let y = 99.9999;
     let s = 'tx.js is awesome!';
 ```
 
@@ -57,9 +57,11 @@ This command will create a `test.ts` and a `test.js` file. You can do whatever y
 | Tx.js       | JavaScript |
 |-------------|------------|
 | int         | number     |
-| double      | bigint     |
-| string      | string     |
+| double      | number     |
+| big         | bigint     |
+| str         | string     |
 | bool        | boolean    |
+| obj         | object     |
 | sym         | symbol     |
 | any         | any        |
 

@@ -1,7 +1,7 @@
 import execa from 'execa';
 import { access, createReadStream, createWriteStream, constants } from 'fs';
 import { promisify } from 'util';
-import { lexer } from './lexer.js';
+import { compiler } from './compiler.js';
 const accessPromd = promisify(access);
 const currentDir = `${process.cwd()}/`;
 
@@ -27,7 +27,7 @@ export async function convertTxToJs(options) {
 
     optionConfigs(options, addedOptions);
     console.log(`Compiling '${fileName}'...`);
-    execa.command(`tsc ${addedOptions.join('\ ')} test.ts`).catch(console.error);
+    execa('tsc');
 }
 
 /**
@@ -40,7 +40,7 @@ async function checkFile(filename) {
 }
 
 /**
- * String (text) from the .tx file ran through the Lexer, modified for tsc readability
+ * String (text) from the .tx file ran through the Compiler, modified for tsc readability
  * @param txPath
  * @param tsPath
  */
@@ -48,7 +48,7 @@ function readFromFile(txPath, tsPath) {
     let readStream = createReadStream(txPath, 'utf8');
     let writeStream = createWriteStream(tsPath);
     readStream.on('data', (code) => {
-        const data = lexer(code);
+        const data = compiler(code);
         writeStream.write(data);
     });
 }
@@ -60,7 +60,7 @@ function readFromFile(txPath, tsPath) {
  * @returns string
  */
 function optionConfigs(options, optionsList) {
-    options.es3 || optionsList.push('--target es6') && optionsList.push('--lib es6');
+    //options.es3 || optionsList.push('--target es6') && optionsList.push('--lib es6');
     options.prettify && optionsList.push('--pretty');
     options.strict && optionsList.push('--strict');
 }

@@ -38,8 +38,7 @@
   },
   "homepage": "https://github.com/ati-n/tx.js#readme",
   "dependencies": {
-    "arg": "^5.0.0",
-    "execa": "^5.0.0"
+    "arg": "^5.0.0"
   },
   "files": [
     "src/"

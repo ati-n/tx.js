@@ -1,9 +1,10 @@
-import execa from 'execa';
+import { exec } from 'child_process';
 import { access, createReadStream, createWriteStream, constants } from 'fs';
 import { promisify } from 'util';
 import { compiler } from './compiler.js';
 const accessPromd = promisify(access);
 const currentDir = `${process.cwd()}/`;
+
 
 /**
  * Creates typescript file then calls the tsc
@@ -27,7 +28,10 @@ export async function convertTxToJs(options) {
 
     optionConfigs(options, addedOptions);
     console.log(`Compiling '${fileName}'...`);
-    execa('tsc');
+
+    exec('tsc', (error, stdout, stderr) => {
+        console.log(`ERROR: ${stdout}`);
+    });
 }
 
 /**

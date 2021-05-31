@@ -2,7 +2,8 @@
 # What is this ?
 
 **transplant.js** ( _or_ **`tx.js`** ) is a Javascript compiler relying heavily on TypeScript.  
-It uses “types on the left”-style declarations and the 'classic' C/C++/Java types like _int, double, str_ and _bool_.
+It uses “types on the left”-style declarations and the 'classic' C/C++/Java types like _int, double, str_ and _bool_.  
+See the [Docs here.](https://github.com/ati-n/tx.js/blob/main/docs.md)
 
 **tx.js**  files can be created with the **`.tx`** extension.
 
@@ -31,7 +32,8 @@ This command will create a `test.ts` and a `test.js` file. You can do whatever y
 + Error handling is done by the TypeScript compiler, except input errors.
 
 
-## How it works
+## How it works  
+See the [Docs here](https://github.com/ati-n/tx.js/blob/main/docs.md)  
 ```ruby
 #// Write your code in tx.js
     const int x = 10;

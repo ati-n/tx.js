@@ -1,6 +1,7 @@
 import arg from 'arg';
 import { convertTxToJs } from './main.js';
 import { readFile } from 'fs/promises';
+import {exec} from "child_process";
 const json = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
 
 /**
@@ -23,11 +24,11 @@ function parseArgumentsIntoOptions(rawArgs) {
     const slicedArgs = rawArgs.slice(2);
     const args = arg(
         {
+            '--init': Boolean,
             '--help': Boolean,
             '--version': Boolean,
             '--pretty': Boolean,
             '--strict': Boolean,
-            '--es3': Boolean,
             '-h': '--help',
             '-V': '--version',
             '-p': '--pretty',
@@ -35,11 +36,11 @@ function parseArgumentsIntoOptions(rawArgs) {
         { argv: slicedArgs, permissive: true},
     );
     return {
+        init: args['--init'] || false,
         sendHelp: args['--help'] || false,
         whichVersion: args['--version'] || false,
         prettify: args['--pretty'] || false,
         strict: args['--strict'] || false,
-        es3: args['--es3'] || false,
         template: args._[0],
         argvLength: slicedArgs.length,
     }
@@ -47,22 +48,25 @@ function parseArgumentsIntoOptions(rawArgs) {
 
 /**
  * Checks CLI options
+ * @param init
  * @param sendHelp
  * @param template
  * @param whichVersion
  * @param argvLength
  */
-function checkOption({sendHelp, template, whichVersion, argvLength}) {
+function checkOption({init, sendHelp, template, whichVersion, argvLength}) {
     if (!argvLength) {
         console.log('\nSyntax:\ttxc [options] [filename]');
         console.error("[Tx.js::Error]\nNoArgumentError\t... Use `txc --help` if you're lost.");
 
     } else if (!template) {
+        init && exec('tsc --init', (stdout) => {
+            console.error(stdout);
+        });
         sendHelp && console.log(`[Options]\n--help\t\t-h\tthis message
 --version\t-v\tcurrent version
 --pretty\t-p\tenable typescript pretty
---strict\t\tenable strict mode ('use strict')
---es3\t\t\tTSC compiles with ES3 (instead of ES6)`);
+--strict\t\tenable strict mode ('use strict')`);
         whichVersion && console.log(`Version ${json.version}`);
 
     } else {

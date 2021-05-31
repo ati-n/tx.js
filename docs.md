@@ -57,7 +57,7 @@ In Tx you can still choose if you want `int` or `double`, why is that? Because n
 
 The other primitives are very straight forward, TypeScript's `string` is called `str` in Tx, `boolean` is `bool`, `biging` is `big` and `symbol` is `sym`.
 
-The other two Javascript primitives `undefined` and `null` doesn`t have special syntax.
+The other two Javascript primitives `undefined` and `null` don't have special syntaxes.
 
 ### Arrays
 
@@ -75,7 +75,7 @@ When you delcare a variable in TypeScript, you would do something like this:
 let myName: string = "Joey";
 ```
 
-This is though considered a 'bad practice' and the <g>: string</g> isn't needed, because TypeScript tries to _infer_ the types in the code.
+This is though considered a 'bad practice' and the `: string` isn't needed, because TypeScript tries to _infer_ the types in the code.
 
 Still it would be _great_ if all variable types would've got their annotations without too much typing.
 
@@ -279,9 +279,3 @@ const big anotherHundred = 100n;
 const sym firstName = Symbol("name");
 const sym secondName = Symbol("name");
 ```
-
-<style>
-r { color: Red }
-o { color: Orange }
-g { color: lightseagreen }
-</style>

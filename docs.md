@@ -18,7 +18,7 @@ I didn't like it. I thought `int x` would be a million times better, get rid of 
 If you know TypeScript, you're already good to go.
 Tx **is** TypeScript code with classic _"types on the left”-style declarations_ and the type annotations you know and love from other languages.
 
-Here's an example. The above code is written in TypeScript...
+Here's an example. This code is written in TypeScript...
 
 ```typescript
 function greet(person: string, date: Date) {
@@ -34,8 +34,7 @@ function greet(str person, Date date) {
 }
 ```
 
-Well, this doesn't look much.. (Markdown hasn't supported Tx syntax yet, so <g>**str**</g> isn't highlighted).
-But this is not what Tx is only doing!
+Well, this doesn't look much.. But this is not what Tx is only doing!
 
 ---
 
@@ -48,12 +47,12 @@ When you would declare something with a type in eg. Java, you do that in Tx. Whe
 ---
 
 ### Primitives
-
 <br>
+
 Tx primitives are `int`, `double`, `str`, `bool`, `big` and `sym`.
 
 TypeScript (and Javascript) `number` is a **double-precision 64-bit floating point format (IEEE 754)**, so every number is basically a float.
-In Tx you can still choose if you want `int` or `double`, why is that? Because now you can really distinguish between integers and floating point numbers! At first I only wanted to use `int` for every number, but that would've been so incorrect grammatically, so I added `double`. These are nonetheless the same, just here for convenience.
+In Tx you can still choose if you want `int` or `double`, why is that? ~~Because now you can really distinguish between integers and floating point numbers!~~   At first I only wanted to use `int` for every number, but that would've been so incorrect grammatically, so I added `double`. These are nonetheless the same, just here for convenience.
 
 The other primitives are very straight forward, TypeScript's `string` is called `str` in Tx, `boolean` is `bool`, `biging` is `big` and `symbol` is `sym`.
 
@@ -63,7 +62,12 @@ The other two Javascript primitives `undefined` and `null` don't have special sy
 
 <br>
 
-Tx's array types are written as `int[]` for `[1,2,3]` . You can use the other syntax `Array<int>`, this means the same.
+Tx's array types are written as `int[]` for `[ 1, 2, 3 ]` . You can use the other syntax `Array<int>`, this means the same.
+```java
+int[] myList = [ 1, 2, 3 ];
+Array<obj> duelMasters = [{ name: "Joey", ace: "Red-Eyes Black Dragon" },
+                          { name: "Yugi", ace: "Dark Magician" }]
+```
 
 ### Type Annotations for Variables
 
@@ -139,7 +143,7 @@ You already saw in the very first example, that Tx uses the left-side type synta
 Optional properties are the same in Tx and in TypeScript (use `?`)
 
 ```typescript
-function yourName(obj: { str first; str last? }) {
+function yourName(obj: { str first, str last? }) {
   // ...
 }
 // Both OK
@@ -153,7 +157,7 @@ yourName({ first: "Yugi", last: "Moto" });
 
 TypeScript's union types were very controversial for me when I first learned about them. What's the point of strong typing if you can dodge it and _still have multiple types_ ?
 
-I kept TypeScript's syntax format, because ~~`(int | str id)`~~ looks confusing and I don't like union types (use **Type Aliases** instead!)
+I kept TypeScript's syntax format, because ~~`(int | str id)`~~ looks confusing and I rather use **Type Aliases** instead (see below).
 
 ```typescript
 function printLicensePlate(id: int | str) {
@@ -184,11 +188,9 @@ printCoords({ x: 37.2340392, y: 122.44361 });
 
 A type alias can be used to name a union type.
 
-```python
-type ID = int | str;
-```
-
 ```typescript
+type ID = int | str;
+
 function printLicensePlate( ID id ) {
     console.log("Your License plate is: " + id);
 }
@@ -204,14 +206,12 @@ Interfaces are very similar to Type aliases, the key distinction is that a type 
 
 A key difference in Tx is that you **should only use comma as the separator** and not semicolon in interfaces and type aliases.
 
-```c#
+```typescript
 interface Coordinate = {
     double x, // not semicolon!
     double y,
 }
-```
 
-```typescript
 function printCoords(Coordinate coord) {
     console.log("X is " + coord.x);
     console.log("Y is " + coord.y);

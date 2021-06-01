@@ -1,15 +1,15 @@
 ![image alt <](https://github.com/ati-n/tx.js/blob/main/tx-logo.svg)
 # What is this ?
 
-**transplant.js** ( _or_ **`tx.js`** ) is a Javascript compiler relying heavily on TypeScript.  
-It uses “types on the left”-style declarations and the 'classic' C/C++/Java types like _int, double, str_ and _bool_.  
+**Transplant.js** ( _or_ **`Tx.js`** ) is TypeScript compiler written in Javascript.  
+It uses “types on the left”-style declarations and the _classic_ C/C++/Java types like _int, double, str_ and _bool_.  
 See the [Docs here.](https://github.com/ati-n/tx.js/blob/main/docs.md)
 
-**tx.js**  files can be created with the **`.tx`** extension.
+**Tx.js**  files can be created with the **`.tx`** extension.
 
 
 ## Installation
-**tx.js** uses the TypeScript compiler so make sure you have it installed aswell 
+**Tx.js** uses the TypeScript compiler so make sure you have it installed aswell 
 
 ```shell
 # Locally in your project
@@ -22,7 +22,7 @@ $ npm install -g transplant-js
 ```
 
 ## How to run
-After installation, you can use the transplant.js compiler `txc`  
+After installation, you can use the Transplant.js compiler `txc`  
 To compile **test.tx** run
 ```shell
 $ txc test.tx
@@ -34,28 +34,28 @@ This command will create a `test.ts` and a `test.js` file. You can do whatever y
 
 ## How it works  
 See the [Docs here](https://github.com/ati-n/tx.js/blob/main/docs.md)  
-```ruby
-#// Write your code in tx.js
+```c#
+// Write your code in Tx.js
     const int x = 10;
-    double y = 99.9999;
-    str s = 'tx.js is awesome!';
+    str fact = 'Tx.js is awesome!';
+    int[] myList = [ 3, 2, 1 ];
 ```
 ```typescript
-// The tx compiler converts it to TypeScript
+// The Tx compiler converts it to TypeScript
     const x: number = 10;
-    let y: number = 99.9999;
-    let s: string = 'tx.js is awesome!';
+    let fact: string = 'Tx.js is awesome!';
+    let myList: number[] = [ 3, 2, 1 ];
 ```
 ```javascript
 // Then the TypeScript compiler does the dirty job to convert it to JavaScript
     const x = 10;
-    let y = 99.9999;
-    let s = 'tx.js is awesome!';
+    let fact = 'Tx.js is awesome!';
+    let myList = [ 3, 2, 1 ];
 ```
 
 
 ## Table of types
-
+#### Primitives
 | Tx.js       | JavaScript |
 |-------------|------------|
 | int         | number     |

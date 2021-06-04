@@ -126,7 +126,7 @@ dist
 npm-debug.log
 .node_modules/
 # Others
-
+test/
 # Idea
 .idea/
 .out/

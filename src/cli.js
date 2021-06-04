@@ -1,7 +1,7 @@
 import arg from 'arg';
 import { convertTxToJs } from './main.js';
 import { readFile } from 'fs/promises';
-import {exec} from "child_process";
+import { exec } from "child_process";
 const json = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
 
 /**
@@ -18,7 +18,6 @@ export async function cli(args) {
 /**
  * CLI options parser
  * @param rawArgs
- * @returns {{template: string, whichVersion: boolean, prettify: boolean, sendHelp: boolean, argvLength}}
  */
 function parseArgumentsIntoOptions(rawArgs) {
     const slicedArgs = rawArgs.slice(2);
@@ -60,11 +59,12 @@ function checkOption({init, sendHelp, template, whichVersion, argvLength}) {
         console.error("[Tx.js::Error]\nNoArgumentError\t... Use `txc --help` if you're lost.");
 
     } else if (!template) {
-        init && exec('tsc --init', (stdout) => {
-            console.error(stdout);
+        init && exec('tsc --init', (error, stdout) => {
+            error && console.error(stdout);
         });
         sendHelp && console.log(`[Options]\n--help\t\t-h\tthis message
 --version\t-v\tcurrent version
+--init\t\t\tcreate tsconfig.json
 --pretty\t-p\tenable typescript pretty
 --strict\t\tenable strict mode ('use strict')`);
         whichVersion && console.log(`Version ${json.version}`);

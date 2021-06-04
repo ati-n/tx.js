@@ -2,7 +2,7 @@ import { exec } from 'child_process';
 import { access, createReadStream, createWriteStream, constants } from 'fs';
 import { promisify } from 'util';
 import { compiler } from './compiler.js';
-const accessPromd = promisify(access);
+const accessPromised = promisify(access);
 const currentDir = `${process.cwd()}/`;
 
 
@@ -29,8 +29,8 @@ export async function convertTxToJs(options) {
     optionConfigs(options, addedOptions);
     console.log(`Compiling '${fileName}'...`);
 
-    exec('tsc', (error, stdout, stderr) => {
-        console.log(`ERROR: ${stdout}`);
+    exec('tsc', (error, stdout) => {
+        error && console.error(`[Tx.js::Error]\n${stdout.replace(/.ts/g, '.tx')}`);
     });
 }
 
@@ -40,11 +40,11 @@ export async function convertTxToJs(options) {
  * @returns {Promise<void>}
  */
 async function checkFile(filename) {
-    await accessPromd(filename, constants.R_OK);
+    await accessPromised(filename, constants.R_OK);
 }
 
 /**
- * String (text) from the .tx file ran through the Compiler, modified for tsc readability
+ * String (text) from the .tx file runs through the Compiler, modified for tsc readability
  * @param txPath
  * @param tsPath
  */

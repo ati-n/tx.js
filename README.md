@@ -1,12 +1,19 @@
-![image alt <](https://github.com/ati-n/tx.js/blob/main/tx-logo.svg)
+
+
+<img align="left" width="300" height="300" src="https://github.com/ati-n/tx.js/blob/main/tx-logo.svg">
+
 # What is this ?
 
 **Transplant.js** ( _or_ **`Tx.js`** ) is a strict syntactical superset of TypeScript.  
-It uses “types on the left”-style declarations and the _classic_ C/C++/Java types like _int, double, str_ and _bool_.  
-- See the [Docs here.](https://github.com/ati-n/tx.js/blob/main/docs.md)
+It uses “types on the left”-style declarations and the _classic_ C/C++/Java types like _int, double, str_ and _bool_.   
+
 
 **Tx.js**  files can be created with the **`.tx`** extension.
 
+You can read the [Docs here.](https://github.com/ati-n/tx.js/blob/main/docs.md)
+
+
+<br><br><br>
 
 ## Installation
 **Tx.js** uses the TypeScript compiler so make sure you have it installed aswell 

@@ -1,9 +1,9 @@
 ![image alt <](https://github.com/ati-n/tx.js/blob/main/tx-logo.svg)
 # What is this ?
 
-**Transplant.js** ( _or_ **`Tx.js`** ) is TypeScript compiler written in Javascript.  
+**Transplant.js** ( _or_ **`Tx.js`** ) is a strict syntactical superset of TypeScript.  
 It uses “types on the left”-style declarations and the _classic_ C/C++/Java types like _int, double, str_ and _bool_.  
-See the [Docs here.](https://github.com/ati-n/tx.js/blob/main/docs.md)
+- See the [Docs here.](https://github.com/ati-n/tx.js/blob/main/docs.md)
 
 **Tx.js**  files can be created with the **`.tx`** extension.
 
@@ -28,12 +28,12 @@ To compile **test.tx** run
 $ txc test.tx
 ```
 This command will create a `test.ts` and a `test.js` file. You can do whatever you want with them! 🥳
-+ **transplant.js**  always keeps the same file name.
++ **Transplant.js**  always tries to keep the same file name.
 + Error handling is done by the TypeScript compiler, except input errors.
 
 
 ## How it works  
-See the [Docs here](https://github.com/ati-n/tx.js/blob/main/docs.md)  
+- Read the [Docs](https://github.com/ati-n/tx.js/blob/main/docs.md)  
 ```c#
 // Write your code in Tx.js
     const int x = 10;
@@ -52,21 +52,6 @@ See the [Docs here](https://github.com/ati-n/tx.js/blob/main/docs.md)
     let fact = 'Tx.js is awesome!';
     let myList = [ 3, 2, 1 ];
 ```
-
-
-## Table of types
-#### Primitives
-| Tx.js       | JavaScript |
-|-------------|------------|
-| int         | number     |
-| double      | number     |
-| big         | bigint     |
-| str         | string     |
-| bool        | boolean    |
-| obj         | object     |
-| sym         | symbol     |
-| any         | any        |
-
 ---
 
 

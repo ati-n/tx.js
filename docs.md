@@ -34,7 +34,7 @@ function greet(person: string, date: Date) {
 Would be written like this in Tx:
 
 ```typescript
-function greet(str person, Date date) {
+void greet(str person, Date date) {
   console.log(`Hello ${person}, today is ${date.toDateString()}!`);
 }
 ```
@@ -155,11 +155,11 @@ let hello: Function = function(name: string): void {
 Arrow functions keep the TypeScript syntax:
 ```typescript
 // Tx.js
-const st[] beers = ["Heineken", "Calsberg", "Hoegaarden"];
+const str[] beers = ["Heineken", "Calsberg", "Hoegaarden"];
 
-beers.forEach((beer): str => {
+beers.forEach( (beer): str => {
   console.log("Can I buy you a " + beer + "?");
-}
+});
 ```
 
 
@@ -170,7 +170,7 @@ beers.forEach((beer): str => {
 Here is an example of Tx keeping the TypeScript syntax format, when we annotated the `sum` parameter with a type with two properties - `x` and `y` - both are `int` types.
 
 ```typescript
-function add(sum: { int x, int y }) {
+int add(sum: { int x, int y }) {
     return sum.x + sum.y;
 }
 add({ x: 3, y: 7 });
@@ -181,7 +181,7 @@ You already saw in the very first example, that Tx uses the left-side type synta
 Optional properties are the same in Tx and in TypeScript (use `?`)
 
 ```typescript
-function yourName(obj: { str first, str last? }) {
+str yourName(obj: { str first, str last? }) {
   // ...
 }
 // Both OK
@@ -198,7 +198,7 @@ TypeScript's union types were very controversial for me when I first learned abo
 I kept TypeScript's syntax format, because ~~`(int | str id)`~~ looks confusing and I rather use **Type Aliases** instead (see below).
 
 ```typescript
-function printLicensePlate(id: int | str) {
+void printLicensePlate(id: int | str) {
   console.log("Your License plate is: " + id);
 }
 // Both OK
@@ -216,7 +216,7 @@ type Coordinate = {
     double y,
 }
 
-function printCoords(Coordinate coord) {
+void printCoords(Coordinate coord) {
     console.log("X is " + coord.x);
     console.log("Y is " + coord.y);
 }
@@ -229,7 +229,7 @@ A type alias can be used to name a union type.
 ```typescript
 type ID = int | str;
 
-function printLicensePlate( ID id ) {
+void printLicensePlate( ID id ) {
     console.log("Your License plate is: " + id);
 }
 ```
@@ -250,7 +250,7 @@ interface Coordinate = {
     double y,
 }
 
-function printCoords(Coordinate coord) {
+void printCoords(Coordinate coord) {
     console.log("X is " + coord.x);
     console.log("Y is " + coord.y);
 }
@@ -275,7 +275,7 @@ On the other hand, combining literals into a type alias union work great:
 type RPS = "rock" | "paper" | "scissors";
 }
 
-function play(str player, RPS choice) {
+void play(str player, RPS choice) {
     console.log(player + " chose " + choice);
 }
 play("Joey", "rock");

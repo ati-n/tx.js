@@ -107,23 +107,53 @@ const myNum: number = 56;
 
 <br>
 
-#### Parameter Type Annotations
+There are multiple options and ways to write functions in TypeScript.  
+Tx.js tries to follow languages like Java once again, so the most common syntax is `returnType`+`functionName`+`(params)`.
 
+#### Parameter Type Annotations
 ```typescript
-function greet(str name) {
+void beerProfile(str name, int age, bool isAdult = false, Array<str> favDrinks) {
+  // ...
+}
+```
+#### Return Type Annotation
+```typescript
+// Tx.js
+void greet(str name) {
+  console.log("Hello, " + name + "!");
+}
+
+// TypeScript
+function greet(name: string): void {
   console.log("Hello, " + name + "!");
 }
 ```
 
-#### Return type Annotations
+#### Anonymous (or Arrow) functions
 
-There are multiple options to write functions in TypeScript
-
+Remember, that the variable's type is `Function`, not the return type of the function!  
 ```typescript
-function monthsPerYear() {
-  return 12;
+// Tx.js
+Function hello = void (str name) {
+  // ...
+}
+
+// TypeScript
+let hello: Function = function(name: string): void {
+  // ...
 }
 ```
+
+Arrow functions keep the TypeScript syntax:
+```typescript
+// Tx.js
+const st[] beers = ["Heineken", "Calsberg", "Hoegaarden"];
+
+beers.forEach((beer): str => {
+  console.log("Can I buy you a " + beer + "?");
+}
+```
+
 
 ### Object Types
 

@@ -33,10 +33,13 @@ export const compiler = function (input) {
     const types = inputWithoutSnC.match(/\b(?<=(?:type|interface|class)\s{1,99})\w+(?=\s{1,99}[={])/g)?.join('|')?.insertAt(0,'|') || '';
     // Regex to find where to insert 'let' in the code, creating TS variables
     const insertLet = RegExp(`(?<!(?:const|public|private|protected|readonly|override|\\(|,)\\s{0,99})(?:int|str|bool|double|big|obj|Array<.*>|Collection<.*>|${builtInTypes}${types}|\\w+\\[])(\\w*?\\[])?\\s+?\\w+\\s*[=;]`,'g');
+    // Regex to create functions
+    const functions = RegExp(`\\b(int|str|bool|double|big|obj|sym|void|never|unknown|undefined|Array<.*>|Collection<.*>|${builtInTypes}${types}|\\w+\\[])(\\w*?\\[])?\\s+(\\w*)\\s*(\\(.*\\))\\s*(?!,)`, "g");
     // Regex to swap variable names and type annotations
-    const regex = RegExp(`\\b(int|str|bool|double|big|obj|Array<.*>|Collection<.*>|${builtInTypes}${types}|\\w+\\[])(\\w*?\\[])?\\s+(\\w+\\??)`,'g');
+    const regex = RegExp(`\\b(int|str|bool|double|big|obj|Array<.*>|Collection<.*>|${builtInTypes}${types}|\\w+\\[])(\\w*?\\[])?\\s+(\\w+\\??\\s*?(\\(.*?\\))?)`,'g');// /\b(int|str|bool|double|big|obj|Array<.*>|Collection<.*>|${builtInTypes}${types}|\w+\[])(\w*?\[])?\s+(\w+\??\s*?(\(.*?\))?)/
     // This is where the magic happens
     const output = inputWithoutSnC.replace(insertLet, 'let $&')
+                                    .replace(functions, `function $3 $4: $1$2`)
                                     .replace(regex,`$3: $1$2`)
                                     .replace(regex,`$3: $1$2`)
                                     .replace(typesForRegex, matched => typeOf[matched]);

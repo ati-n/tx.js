@@ -1,4 +1,8 @@
+<img align="left" alt="TX logo" width="70" height="70" src="https://github.com/ati-n/tx.js/blob/main/tx-logo.svg">
+
 # Transplant.js
+
+<br/>
 
 When I first heard about TypeScript, I was very excited, because I am so used to declaring types for everything in C/C++/Java etc.
 I thought that Javascript is very cool because of its flexibility, but gives a lot of headache when you try to debug where the hell something became null or undefined.
@@ -9,7 +13,8 @@ When I was getting to know TypeScript, immediately I got confused with the type 
 
 What is this syntax? I know Javascript uses this syntax under the hood, but is it really... appealing?
 
-I didn't like it. I thought `int x` would be a million times better, get rid of that `let` come on.. The syntax would be ~~almost~~ like Java..
+I didn't like it. I thought `int x` would be a million times better, get rid of that wierd syntax come on..  
+The syntax would be ~~almost~~ like Java...
 
 ---
 
@@ -29,7 +34,7 @@ function greet(person: string, date: Date) {
 Would be written like this in Tx:
 
 ```typescript
-function greet(str person, Date date) {
+void greet(str person, Date date) {
   console.log(`Hello ${person}, today is ${date.toDateString()}!`);
 }
 ```
@@ -38,7 +43,7 @@ Well, this doesn't look much.. But this is not what Tx is only doing!
 
 ---
 
-## Everyday types
+# Everyday types
 
 Types appear in many places in TypeScript and so do in Tx.
 
@@ -56,18 +61,9 @@ In Tx you can still choose if you want `int` or `double`, why is that? ~~Because
 
 The other primitives are very straight forward, TypeScript's `string` is called `str` in Tx, `boolean` is `bool`, `biging` is `big` and `symbol` is `sym`.
 
-The other two Javascript primitives `undefined` and `null` don't have special syntaxes.
+The other two Javascript primitives `undefined` and `null` don't have special syntaxes.  
+Though not primitives, TypeScript added a couple more types: `unknown`, `never` and `void`. These don't have special syntaxes either and you can't use them as left-style types. (Except for function return types. _More on that later_)
 
-### Arrays
-
-<br>
-
-Tx's array types are written as `int[]` for `[ 1, 2, 3 ]` . You can use the other syntax `Array<int>`, this means the same.
-```java
-int[] myList = [ 1, 2, 3 ];
-Array<obj> duelMasters = [{ name: "Joey", ace: "Red-Eyes Black Dragon" },
-                          { name: "Yugi", ace: "Dark Magician" }]
-```
 
 ### Type Annotations for Variables
 
@@ -103,27 +99,69 @@ This will become
 const myNum: number = 56;
 ```
 
+### Arrays
+
+<br/>
+
+Tx's array types are written as `int[]` for `[ 1, 2, 3 ]` . You can use the other syntax `Array<int>`, this means the same.
+```java
+int[] myList = [ 1, 2, 3 ];
+Array<obj> duelMasters = [{ name: "Joey", ace: "Red-Eyes Black Dragon" },
+                          { name: "Yugi", ace: "Dark Magician" }]
+```
+
+
 ### Functions
 
 <br>
 
-#### Parameter Type Annotations
+There are multiple options and ways to write functions in TypeScript.  
+Tx.js tries to follow languages like Java once again, so the most common syntax is `returnType`+`functionName`+`(params)`.
 
+#### Parameter Type Annotations
 ```typescript
-function greet(str name) {
+void beerProfile(str name, int age, bool isAdult = false, Array<str> favDrinks) {
+  // ...
+}
+```
+#### Return Type Annotation
+```typescript
+// Tx.js
+void greet(str name) {
+  console.log("Hello, " + name + "!");
+}
+
+// TypeScript
+function greet(name: string): void {
   console.log("Hello, " + name + "!");
 }
 ```
 
-#### Return type Annotations
+#### Anonymous (or Arrow) functions
 
-There are multiple options to write functions in TypeScript
-
+Remember, that the variable's type is `Function`, not the return type of the function!  
 ```typescript
-function monthsPerYear() {
-  return 12;
+// Tx.js
+Function hello = void (str name) {
+  // ...
+}
+
+// TypeScript
+let hello: Function = function(name: string): void {
+  // ...
 }
 ```
+
+Arrow functions keep the TypeScript syntax:
+```typescript
+// Tx.js
+const str[] beers = ["Heineken", "Calsberg", "Hoegaarden"];
+
+beers.forEach( (beer): str => {
+  console.log("Can I buy you a " + beer + "?");
+});
+```
+
 
 ### Object Types
 
@@ -132,7 +170,7 @@ function monthsPerYear() {
 Here is an example of Tx keeping the TypeScript syntax format, when we annotated the `sum` parameter with a type with two properties - `x` and `y` - both are `int` types.
 
 ```typescript
-function add(sum: { int x, int y }) {
+int add(sum: { int x, int y }) {
     return sum.x + sum.y;
 }
 add({ x: 3, y: 7 });
@@ -143,7 +181,7 @@ You already saw in the very first example, that Tx uses the left-side type synta
 Optional properties are the same in Tx and in TypeScript (use `?`)
 
 ```typescript
-function yourName(obj: { str first, str last? }) {
+str yourName(obj: { str first, str last? }) {
   // ...
 }
 // Both OK
@@ -160,7 +198,7 @@ TypeScript's union types were very controversial for me when I first learned abo
 I kept TypeScript's syntax format, because ~~`(int | str id)`~~ looks confusing and I rather use **Type Aliases** instead (see below).
 
 ```typescript
-function printLicensePlate(id: int | str) {
+void printLicensePlate(id: int | str) {
   console.log("Your License plate is: " + id);
 }
 // Both OK
@@ -178,7 +216,7 @@ type Coordinate = {
     double y,
 }
 
-function printCoords(Coordinate coord) {
+void printCoords(Coordinate coord) {
     console.log("X is " + coord.x);
     console.log("Y is " + coord.y);
 }
@@ -191,7 +229,7 @@ A type alias can be used to name a union type.
 ```typescript
 type ID = int | str;
 
-function printLicensePlate( ID id ) {
+void printLicensePlate( ID id ) {
     console.log("Your License plate is: " + id);
 }
 ```
@@ -212,7 +250,7 @@ interface Coordinate = {
     double y,
 }
 
-function printCoords(Coordinate coord) {
+void printCoords(Coordinate coord) {
     console.log("X is " + coord.x);
     console.log("Y is " + coord.y);
 }
@@ -237,7 +275,7 @@ On the other hand, combining literals into a type alias union work great:
 type RPS = "rock" | "paper" | "scissors";
 }
 
-function play(str player, RPS choice) {
+void play(str player, RPS choice) {
     console.log(player + " chose " + choice);
 }
 play("Joey", "rock");

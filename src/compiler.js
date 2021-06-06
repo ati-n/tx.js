@@ -6,14 +6,10 @@ export const compiler = function (input) {
     const collectSnC = input.match(/(\/\*[\s\S]*?\*\/|\/\/.+|"\D+?"|'\D+?')/g);
 
     // Function to replace
-    function replacer() {
-        return "_RPLCR_";
-    }
+    const replacer = () => "_RPLCR_";
 
     // Putting strings & comments back
-    function putSnCBack() {
-        return collectSnC.shift();
-    }
+    const putSnCBack = () => collectSnC.shift();
 
     //A switch-object to find the TS type for its Tx equivalent
     const typeOf = {
@@ -24,11 +20,11 @@ export const compiler = function (input) {
         bool:   "boolean",
         sym:  "symbol",
         obj:  "object",
-        /* no equivalent for `never`, `unknown`, `void`, `any` */
+        /* no equivalent for `null`, `undefined`, `never`, `unknown`, `void`, `any` */
     };
 
     // Removing strings & comments from the code
-    const inputWithoutSnC = input.replace(/(\/\*[\s\S]*?\*\/|\/\/.+|"\D+?"|'\D+?')/g, () => replacer());
+    const inputWithoutSnC = input.replace(/(\/\*[\s\S]*?\*\/|\/\/.+|"\D+?"|'\D+?')/g, replacer);
     // Collecting user-defined type names
     const types = inputWithoutSnC.match(/\b(?<=(?:type|interface|class)\s{1,99})\w+(?=\s{1,99}[={])/g)?.join('|')?.insertAt(0,'|') || '';
     // Regex to find where to insert 'let' in the code, creating TS variables
@@ -45,7 +41,7 @@ export const compiler = function (input) {
                                     .replace(typesForRegex, matched => typeOf[matched]);
 
     // Returning with strings & comments put back in
-    return output.replace(/_RPLCR_/g, () => putSnCBack());
+    return output.replace(/_RPLCR_/g, putSnCBack);
 }
 
 // Helper

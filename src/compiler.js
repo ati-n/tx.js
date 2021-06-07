@@ -1,7 +1,7 @@
 
 export const compiler = function (input) {
 
-    const typesForRegex = /\b(?:int|str|bool|double|big|obj)\b/g;
+    const typesForRegex = /\b(?:int|str|bool|double|big|sym|obj)\b/g;
     const builtInTypes = "Array|ArrayBuffer|Atomics|BigInt|BigInt64Array|BigUint64Array|Boolean|DataView|Date|Float32Array|Float64Array|Function|Generator|GeneratorFunction|Int8Array|Int16Array|Int32Array|Intl|Map|Number|Object|Proxy|Reflect|RegExp|Set|SharedArrayBuffer|SIMD|String|Symbol|TypedArray|Uint8Array|Uint16Array|Uint32Array|Uint8ClampedArray|WeakMap|WeakSet|Promise";
     const collectSnC = input.match(/(\/\*[\s\S]*?\*\/|\/\/.+|"\D+?"|'\D+?')/g);
 

@@ -62,14 +62,14 @@ In Tx you can still choose if you want `int` or `double`, why is that? ~~Because
 The other primitives are very straight forward, TypeScript's `string` is called `str` in Tx, `boolean` is `bool`, `biging` is `big` and `symbol` is `sym`.
 
 The other two Javascript primitives `undefined` and `null` don't have special syntaxes.  
-Though not primitives, TypeScript added a couple more types: `unknown`, `never` and `void`. These don't have special syntaxes either and you can't use them as left-style types. (Except for function return types. _More on that later_)
+Though not primitives, TypeScript added a couple more types: `unknown`, `never` and `void`. These don't have special syntaxes either and you can't use them as left-side types. (Except for function return types. _More on that later_)
 
 
 ### Type Annotations for Variables
 
 <br>
 
-When you delcare a variable in TypeScript, you would do something like this:
+When you declare a variable in TypeScript, you would do something like this:
 
 ```typescript
 let myName: string = "Joey";
@@ -81,21 +81,21 @@ Still it would be _great_ if all variable types would've got their annotations w
 
 Let's look at Tx:
 
-```python
-str myName = 'Joey';
+```typescript
+str myName = "Joey";
 ```
 
 This code compiles to the previous TypeScript code!  
+
+
 If you want a constant variable, just type `const` before the type:
 
-```c#
+```typescript
 const int myNum = 56;
 ```
 
-This will become
-
+This will compile to
 ```typescript
-// This is TypeScript
 const myNum: number = 56;
 ```
 
@@ -104,7 +104,7 @@ const myNum: number = 56;
 <br/>
 
 Tx's array types are written as `int[]` for `[ 1, 2, 3 ]` . You can use the other syntax `Array<int>`, this means the same.
-```java
+```typescript
 int[] myList = [ 1, 2, 3 ];
 Array<obj> duelMasters = [{ name: "Joey", ace: "Red-Eyes Black Dragon" },
                           { name: "Yugi", ace: "Dark Magician" }]
@@ -125,6 +125,8 @@ void beerProfile(str name, int age, bool isAdult = false, Array<str> favDrinks) 
 }
 ```
 #### Return Type Annotation
+
+The return type is **before** the function's name. Here's how Tx.js compiles a function to TypeScript:
 ```typescript
 // Tx.js
 void greet(str name) {
@@ -137,8 +139,9 @@ function greet(name: string): void {
 }
 ```
 
-#### Anonymous (or Arrow) functions
+#### Anonymous functions
 
+Though no name, you should still write the return type **before** the parenthesis.  
 Remember, that the variable's type is `Function`, not the return type of the function!  
 ```typescript
 // Tx.js
@@ -152,7 +155,7 @@ let hello: Function = function(name: string): void {
 }
 ```
 
-Arrow functions keep the TypeScript syntax:
+Arrow functions keep the TypeScript syntax (return type is after the parenthesis):
 ```typescript
 // Tx.js
 const str[] beers = ["Heineken", "Calsberg", "Hoegaarden"];
@@ -167,7 +170,12 @@ beers.forEach( (beer): str => {
 
 <br>
 
-Here is an example of Tx keeping the TypeScript syntax format, when we annotated the `sum` parameter with a type with two properties - `x` and `y` - both are `int` types.
+The basic syntax for any object type is `obj`.
+```typescript
+const obj deck = { owner: "Yugi Moto", cards: 30, ace: "Dark Magician"};
+```
+
+Here is an example of Tx keeping the TypeScript syntax format, when we annotated the `sum` parameter with a type with two properties -`x` and `y`- both are `int` types.
 
 ```typescript
 int add(sum: { int x, int y }) {
@@ -181,7 +189,7 @@ You already saw in the very first example, that Tx uses the left-side type synta
 Optional properties are the same in Tx and in TypeScript (use `?`)
 
 ```typescript
-str yourName(obj: { str first, str last? }) {
+str yourName(name: { str first, str last? }) {
   // ...
 }
 // Both OK
@@ -317,3 +325,11 @@ const big anotherHundred = 100n;
 const sym firstName = Symbol("name");
 const sym secondName = Symbol("name");
 ```
+-------
+# Looking for help with some special syntax!  
+If you would like to help me, create a pull request with any of these categories:
++ Generics
++ Mixins
++ Classes
++ Namespaces and Modules
++ Any other bugfixes you come across

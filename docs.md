@@ -172,7 +172,7 @@ beers.forEach( (beer): str => {
 
 The basic syntax for any object type is `obj`.
 ```typescript
-const obj deck = { owner: "Yugi Moto", cards: 30, ace: "Dark Magician"};
+const obj deck = { owner: "Yugi Moto", cards: 30, ace: "Dark Magician" };
 ```
 
 Here is an example of Tx keeping the TypeScript syntax format, when we annotated the `sum` parameter with a type with two properties -`x` and `y`- both are `int` types.
@@ -184,7 +184,8 @@ int add(sum: { int x, int y }) {
 add({ x: 3, y: 7 });
 ```
 
-You already saw in the very first example, that Tx uses the left-side type syntax in function parameters, but when the parameter is an object it's just better to not go into something like ~~`add({int x, int y} sum)`~~. Looks ugly and confusing.
+You already saw in the very first example, that Tx uses the left-side type syntax in function parameters, but when the parameter is an object it's just better to not go into something like ~~`add({int x, int y} sum)`~~. Looks ugly and confusing.  
+You can make it work with `add(obj sum)` but now `add` accepts ANY objects and that is not what we want here. But if it doesn't matter what kind of object you pass into a function, use the `obj` type.
 
 Optional properties are the same in Tx and in TypeScript (use `?`)
 

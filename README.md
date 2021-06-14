@@ -43,21 +43,33 @@ This command will create a `test.ts` and a `test.js` file. You can do whatever y
 - Read the [Docs](https://github.com/ati-n/tx.js/blob/main/docs.md)  
 ```c#
 // Write your code in Tx.js
-    const int x = 10;
-    str fact = 'Tx.js is awesome!';
+    int year = 2021;
+    const str fact = "Tx.js is awesome";
     int[] myList = [ 3, 2, 1 ];
+    
+    void myFunc(int y, str f) {
+        console.log(f + " in " + y);
+    }
 ```
 ```typescript
 // The Tx compiler converts it to TypeScript
-    const x: number = 10;
-    let fact: string = 'Tx.js is awesome!';
+    let year: number = 2021;
+    const fact: string = "Tx.js is awesome";
     let myList: number[] = [ 3, 2, 1 ];
+    
+    function myFunc(y: number, f: string): void {
+        console.log(f + " in " + y);
+    }
 ```
 ```javascript
 // Then the TypeScript compiler does the dirty job to convert it to JavaScript
-    const x = 10;
-    let fact = 'Tx.js is awesome!';
+    let year = 2021;
+    const fact = "Tx.js is awesome";
     let myList = [ 3, 2, 1 ];
+    
+    function myFunc(y, f) {
+        console.log(f + " in " + y);
+    }
 ```
 ---
 

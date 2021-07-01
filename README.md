@@ -41,8 +41,10 @@ This command will create a `test.ts` and a `test.js` file. You can do whatever y
 
 ## How it works  
 - Read the [Docs](https://github.com/ati-n/tx.js/blob/main/docs.md)  
+
+Write your code in Tx.js
 ```c#
-// Write your code in Tx.js
+//  test.tx
     int year = 2021;
     const str fact = "Tx.js is awesome";
     int[] myList = [ 3, 2, 1 ];
@@ -51,8 +53,10 @@ This command will create a `test.ts` and a `test.js` file. You can do whatever y
         console.log(f + " in " + y);
     }
 ```
+   
+The Tx compiler converts it to TypeScript
 ```typescript
-// The Tx compiler converts it to TypeScript
+//  test.ts
     let year: number = 2021;
     const fact: string = "Tx.js is awesome";
     let myList: number[] = [ 3, 2, 1 ];
@@ -61,8 +65,10 @@ This command will create a `test.ts` and a `test.js` file. You can do whatever y
         console.log(f + " in " + y);
     }
 ```
+   
+Then the TypeScript compiler does the dirty job to convert it to JavaScript
 ```javascript
-// Then the TypeScript compiler does the dirty job to convert it to JavaScript
+// test.js
     let year = 2021;
     const fact = "Tx.js is awesome";
     let myList = [ 3, 2, 1 ];

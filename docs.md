@@ -11,7 +11,7 @@ When I was getting to know TypeScript, immediately I got confused with the type 
 
 `let x: number`...what?
 
-What is this syntax? I know Javascript uses this syntax under the hood, but is it really... appealing?
+Why is this syntax? I know Javascript uses this syntax under the hood, and languages like Swift uses is.. but is it really... appealing?
 
 I didn't like it. I thought `int x` would be a million times better, get rid of that wierd syntax come on..  
 The syntax would be ~~almost~~ like Java...
@@ -57,7 +57,7 @@ When you would declare something with a type in eg. Java, you do that in Tx. Whe
 Tx primitives are `int`, `double`, `str`, `bool`, `big` and `sym`.
 
 TypeScript (and Javascript) `number` is a **double-precision 64-bit floating point format (IEEE 754)**, so every number is basically a float.
-In Tx you can still choose if you want `int` or `double`, why is that? ~~Because now you can really distinguish between integers and floating point numbers!~~   At first I only wanted to use `int` for every number, but that would've been so incorrect grammatically, so I added `double`. These are nonetheless the same, just here for convenience.
+In Tx you can still choose if you want `int` or `double`, they are nonetheless the same, but if you want to distinguish between them, now you can.
 
 The other primitives are very straight forward, TypeScript's `string` is called `str` in Tx, `boolean` is `bool`, `biging` is `big` and `symbol` is `sym`.
 

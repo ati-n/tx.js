@@ -26,9 +26,9 @@ export const compiler = function (input) {
     // Removing strings & comments from the code
     const inputWithoutSnC = input.replace(/(\/\*[\s\S]*?\*\/|\/\/.+|"\D+?"|'\D+?')/g, replacer);
     // Collecting user-defined type names
-    const types = inputWithoutSnC.match(/\b(?<=(?:type|interface|class)\s{1,99})\w+(?=\s{1,99}[={])/g)?.join('|')?.insertAt(0,'|') || '';
+    const types = inputWithoutSnC.match(/\b(?<=(?:type|interface|class)\s{1,99})\w+<?.*?>?(?=\s{1,99}[={])/g)?.join('|')?.insertAt(0,'|') || '';
     // Regex to find where to insert 'let' in the code, creating TS variables
-    const insertLet = RegExp(`(?<!(?:const|public|private|protected|readonly|override|\\(|,)\\s{0,99})(?:int|str|bool|double|big|obj|Array<.*>|Collection<.*>|${builtInTypes}${types}|\\w+\\[])(\\w*?\\[])?\\s+?\\w+\\s*[=;]`,'g');
+    const insertLet = RegExp(`(?<!(?:const|public|private|protected|readonly|override|\\(|,)\\s{0,99})(?:int|str|bool|double|big|obj|Array<.*>|Collection<.*>|${builtInTypes}${types})(\\w*?\(\\[])*)?\\s+?\\w+\\s*[=;]`,'g');
     // Regex to create functions
     const functions = RegExp(`\\b(int|str|bool|double|big|obj|sym|void|never|unknown|undefined|Array<.*>|Collection<.*>|${builtInTypes}${types}|\\w+\\[])(\\w*?\\[])?\\s+(\\w*)\\s*(\\(.*\\))\\s*(?!,)`, "g");
     // Regex to swap variable names and type annotations

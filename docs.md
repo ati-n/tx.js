@@ -11,7 +11,7 @@ When I was getting to know TypeScript, immediately I got confused with the type 
 
 `let x: number`...what?
 
-Why is this syntax? I know Javascript uses this syntax under the hood, and languages like Swift uses is.. but is it really... appealing?
+Why is this syntax? I know Javascript uses this syntax under the hood, and languages like Swift uses it.. but is it really... appealing?
 
 I was already familiar with the C language-like syntax, so I created **Transplant.js** to help other programmers use a syntax they very much know.
 

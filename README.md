@@ -10,7 +10,7 @@ It uses “types on the left”-style declarations and the _classic_ C/C++/Java 
 
 **Tx.js**  files can be created with the **`.tx`** extension.
 
-You can read the [Docs here.](https://github.com/ati-n/tx.js/blob/main/docs.md)
+You can read the [Documentation here.](https://github.com/ati-n/tx.js/blob/main/docs.md)
 
 
 <br><br><br>
